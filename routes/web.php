@@ -11,6 +11,7 @@
 |
  */
 
-// Route::get('/', function () {
-//     return view('app');
-// });
+use App\Http\Controllers\IndexController;
+
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/hello', [IndexController::class, 'show']);
