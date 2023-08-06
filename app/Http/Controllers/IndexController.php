@@ -6,6 +6,7 @@ class IndexController extends Controller
 {
     public function index()
     {
+        // dd(Listing::all());
         // return "index ";
         return inertia(
             'Index/Index', [
