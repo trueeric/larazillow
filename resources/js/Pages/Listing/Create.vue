@@ -57,7 +57,7 @@ const form = useForm({
     area: 0,
     city: null,
     code: null,
-    Street: null,
+    street: null,
     street_nr: null,
     price: 0,
 });

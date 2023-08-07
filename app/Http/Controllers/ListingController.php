@@ -32,7 +32,12 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        // 針對所有fillable的欄位，一次全部新增，但是沒法一一驗證各欄位的有效性
+        Listing::create($request->all());
+
+        return redirect()->route('listing.index')
+            ->with('success', 'Listing was created!');
     }
 
     /**
