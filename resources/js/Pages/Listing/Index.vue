@@ -6,7 +6,12 @@
             >&nbsp;
         </span>
         <span>
-            <Link :href="`/listing/${listing.id}/edit`">Edit</Link>
+            <Link :href="`/listing/${listing.id}/edit`">Edit</Link>&nbsp;
+        </span>
+        <span>
+            <Link :href="`/listing/${listing.id}`" method="DELETE" as="button"
+                >Delete</Link
+            >
         </span>
     </div>
 </template>
