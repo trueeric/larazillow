@@ -34,7 +34,19 @@ class ListingController extends Controller
     {
         // dd($request->all());
         // 針對所有fillable的欄位，一次全部新增，但是沒法一一驗證各欄位的有效性
-        Listing::create($request->all());
+        Listing::create(
+            $request->validate([
+                'beds'      => 'required|integer|min:0|max:20',
+                'baths'     => 'required|integer|min:0|max:20',
+                'area'      => 'required|integer|min:15|max:1500',
+                'city'      => 'required',
+                'code'      => 'required',
+                'street'    => 'required',
+                'street_nr' => 'required|min:1|max:1000',
+                'price'     => 'required|integer|min:1|max:20000000',
+
+            ]),
+        );
 
         return redirect()->route('listing.index')
             ->with('success', 'Listing was created!');

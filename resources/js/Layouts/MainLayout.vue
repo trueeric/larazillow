@@ -5,7 +5,6 @@
     <div v-if="flashSuccess" class="success">
         {{ flashSuccess }}
     </div>
-    <div>{{ y }}</div>
     <slot>Default</slot>
 </template>
 
