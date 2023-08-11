@@ -16,7 +16,7 @@
             <div class="mt-4">
                 <label for="password" class="label">Password</label>
                 <input
-                    type="text"
+                    type="password"
                     id="password"
                     class="input"
                     v-model="form.password"

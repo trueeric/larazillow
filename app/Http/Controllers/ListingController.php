@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+
+    // * 除了 index, show 其他功能都需要通過登入驗證才能用，與web.php 的驗證功能擇一使用即可
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->except(['index' , 'show']);
+    // }
+
     /**
      * Display a listing of the resource.
      */

@@ -9,6 +9,8 @@ class IndexController extends Controller
         // dd(Listing::all());
         // return "index ";
         // dd(Auth::user());
+        // dd(Auth::check());
+
         return inertia(
             'Index/Index', [
                 'message' => 'Hello from Laravel!',
