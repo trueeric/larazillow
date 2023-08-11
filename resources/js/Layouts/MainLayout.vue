@@ -12,10 +12,15 @@
                 >
                     <Link :href="route('listing.index')">Larazillow</Link>
                 </div>
-                <div class="text">
+                <div v-if="user" class="flex items-center gap-4">
+                    <div class="text-sm text-gray-500">{{ user.name }}</div>
                     <Link :href="route('listing.create')" class="btn-primary"
                         >+ New Listing</Link
                     >
+                    <div>Logout</div>
+                </div>
+                <div v-else>
+                    <Link :href="route('login')">Sign-in</Link>
                 </div>
             </nav>
         </div>
@@ -37,9 +42,13 @@ import { Link, usePage } from "@inertiajs/vue3";
 
 // USE page.props.flash.success!!   DO NOT page.props.value.flash.success
 const page = usePage();
-// console.log("kk1:", page);
+// console.log("kk0:", page);
 // console.log('kk:',page.props.value.flash.success);
 
 const flashSuccess = computed(() => page.props.flash.success);
-// console.log("kk2:", flashSuccess);
+// console.log("kk1:", flashSuccess);
+
+// * 在右上角放入已登入的帳號
+const user = computed(() => page.props.user);
+// console.log("kk2:", user);
 </script>
