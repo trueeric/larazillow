@@ -17,7 +17,15 @@
                     <Link :href="route('listing.create')" class="btn-primary"
                         >+ New Listing</Link
                     >
-                    <div>Logout</div>
+                    <div>
+                        <!-- * method 要換成 delete 預設是get  另外 要加 as="button" 以免噴錯-->
+                        <Link
+                            :href="route('logout')"
+                            method="DELETE"
+                            as="button"
+                            >Logout</Link
+                        >
+                    </div>
                 </div>
                 <div v-else>
                     <Link :href="route('login')">Sign-in</Link>

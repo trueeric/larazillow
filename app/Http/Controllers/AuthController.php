@@ -31,9 +31,15 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return redirect()->intended('/listing');
     }
-    public function destroy()
+    public function destroy(Request $request)
     {
-        //
+        Auth::logout();
+
+        // * session失效，csrf token重算
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('listing.index');
     }
 
 }
