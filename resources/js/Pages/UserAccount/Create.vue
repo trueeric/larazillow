@@ -53,7 +53,11 @@
                     Create Account
                 </button>
                 <div class="mt-2 text-center">
-                    <Link :href="route('login')" class="text-sm text-gray-500">
+                    <Link
+                        :href="route('login')"
+                        m
+                        class="text-sm text-gray-500"
+                    >
                         Already have an account? Click here
                     </Link>
                 </div>

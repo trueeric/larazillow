@@ -23,8 +23,8 @@ class UserAccountController extends Controller
         // * laravel 10 User:create() password可直接生成Hash，以下動作僅供參考
         // * 這裡不做Hash，改到 User.php去做 password Hash
         // $user->password = Hash::make($user->password);
-
         // $user->save();
+
         Auth::login($user);
 
         return redirect()->route('listing.index')

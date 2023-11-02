@@ -29,6 +29,7 @@ class AuthController extends Controller
         }
 
         $request->session()->regenerate();
+        // laravel 的語法 return redirect()->intended()
         return redirect()->intended('/listing');
     }
     public function destroy(Request $request)

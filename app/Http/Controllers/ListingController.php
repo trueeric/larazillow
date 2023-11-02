@@ -31,6 +31,7 @@ class ListingController extends Controller
      */
     public function create()
     {
+
         return inertia('Listing/Create');
     }
 
@@ -40,6 +41,8 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        // 原始方式
+        // Listing::created($request->all());
         // 針對所有fillable的欄位，一次全部新增，但是沒法一一驗證各欄位的有效性
         Listing::create(
             $request->validate([
@@ -85,6 +88,7 @@ class ListingController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
      */
     public function update(Request $request, Listing $listing)
     {

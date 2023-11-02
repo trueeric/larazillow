@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             'name'  => 'Test User',
             'email' => 'test@example.com',
         ]);
+        // 建立Listing的(假)資料
         \App\Models\Listing::factory(20)->create();
     }
 }

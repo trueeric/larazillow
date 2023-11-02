@@ -1,4 +1,5 @@
 <template>
+    <!-- 為了要在小螢幕單欄時，圖改成顯在資料欄的下方，資料欄包在一起 flex flex-col-reverse -->
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
         <Box class="md:col-span-7 flex items-center w-full">
             <div class="w-full text-center font-medium text-gray-500">
@@ -34,7 +35,7 @@
                         min="3"
                         max="35"
                         step="1"
-                        class="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                        class="w-full h-4 bg-gray-200 accent-blue-700 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 dark:accent-blue-300"
                     />
                     <div class="text-gray-600 dark:text-gray-300 mt-2">
                         <div class="text-gray-400">Your Payment</div>
@@ -83,7 +84,7 @@ import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 
 import { ref } from "vue";
-import { useMonthlyPayment } from "@/composables/useMonthlyPayment";
+import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 
 const interestRate = ref(2.5);
 const duration = ref(30);

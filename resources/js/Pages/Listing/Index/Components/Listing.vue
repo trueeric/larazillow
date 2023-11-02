@@ -1,7 +1,7 @@
 <template>
     <Box>
         <div>
-            <!-- <Link :href="`/listing/${listing.id}`"> -->
+            <!-- <Link :href="`/listing/${listing.id}`"> 使用ziggy前的寫法-->
             <Link :href="route('listing.show', listing.id)">
                 <div class="flex items-center gap-1">
                     <Price :price="listing.price" class="text-2xl font-bold" />
@@ -14,12 +14,12 @@
             </Link>
         </div>
         <div>
-            <!-- <Link :href="`/listing/${listing.id}/edit`">Edit</Link>&nbsp; -->
+            <!-- <Link :href="`/listing/${listing.id}/edit`">Edit</Link>&nbsp; 使用ziggy前的寫法--->
             <Link :href="route('listing.edit', listing.id)">Edit</Link>
         </div>
         <div>
             <!-- <Link :href="`/listing/${listing.id}`" method="DELETE" as="button" >Delete</Link
-            >-->
+            > 使用ziggy前的寫法--->
             <Link
                 :href="route('listing.destroy', listing.id)"
                 method="DELETE"

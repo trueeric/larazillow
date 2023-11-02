@@ -23,6 +23,7 @@ Route::get('/hello', [IndexController::class, 'show']);
 Route::resource('listing', ListingController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
+// 沒登入時，主要功能預設先關閉
 Route::resource('listing', ListingController::class)
     ->except('create', 'store', 'edit', 'update', 'destroy');
 // ->except('destory');
