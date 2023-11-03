@@ -22,6 +22,7 @@ return new class extends Migration
             $table->tinyText('street_nr');
 
             $table->unsignedInteger('price');
+            // $table->unsignedInteger('by_user_id');
         });
     }
 

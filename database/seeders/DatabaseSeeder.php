@@ -14,11 +14,16 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        // 建立Listing的(假)資料
+
         \App\Models\User::factory()->create([
             'name'  => 'Test User',
             'email' => 'test@example.com',
         ]);
-        // 建立Listing的(假)資料
         \App\Models\Listing::factory(20)->create();
+        \App\Models\Listing::factory(20)->create([
+            'by_user_id' => 1,
+        ]);
+
     }
 }
