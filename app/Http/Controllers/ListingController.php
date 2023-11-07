@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Listing::class, 'listing');
+    }
 
     // * 除了 index, show 其他功能都需要通過登入驗證才能用，與web.php 的驗證功能擇一使用即可
     // public function __construct()
@@ -31,6 +35,7 @@ class ListingController extends Controller
      */
     public function create()
     {
+        // $this->authorize('create', Listing::class);
 
         return inertia('Listing/Create');
     }
@@ -41,10 +46,13 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+
         // 原始方式
         // Listing::created($request->all());
         // 針對所有fillable的欄位，一次全部新增，但是沒法一一驗證各欄位的有效性
-        Listing::create(
+        // Listing::create(
+        // 增加listing 的owner user
+        $request->user()->listings()->create(
             $request->validate([
                 'beds'      => 'required|integer|min:0|max:20',
                 'baths'     => 'required|integer|min:0|max:20',
@@ -67,6 +75,11 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+        // if (Auth::user()->cannot('view', $listing)) {
+        //     abort(403);
+        // }
+        // $this->authorize('view', $listing);
+
         return inertia(
             'Listing/Show', [
                 'listing' => $listing,
