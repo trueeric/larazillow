@@ -143,7 +143,11 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
+        // * soft delete
         $listing->delete();
+
+        // ! force delete
+        // $listing->forceDelete();
 
         return redirect()->route('listing.index')
             ->with('success', 'Listing was deleted!');
