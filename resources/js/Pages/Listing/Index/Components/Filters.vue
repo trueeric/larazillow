@@ -17,18 +17,12 @@
             </div>
 
             <div class="flex flex-nowrap items-center">
-                <select
-                    class="input-filter-l w-28"
-                    v-model.number="filterForm.beds"
-                >
+                <select v-model="filterForm.beds" class="input-filter-l w-28">
                     <option :value="null">Beds</option>
                     <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
                     <option>6+</option>
                 </select>
-                <select
-                    class="input-filter-r w-28"
-                    v-model.number="filterForm.baths"
-                >
+                <select class="input-filter-r w-28" v-model="filterForm.baths">
                     <option :value="null">Baths</option>
                     <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
                     <option>6+</option>
