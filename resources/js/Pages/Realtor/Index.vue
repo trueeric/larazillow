@@ -1,6 +1,8 @@
 <template>
     <H1 class="text-3xl mb-4">Your Listings</H1>
-    <section class="mb-8">Filters</section>
+    <section>
+        <RealtorFilters />
+    </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
         <box v-for="listing in listings" :key="listings.id">
             <div
@@ -21,7 +23,17 @@
                 >
                     <Link class="btn-outline text-xs font-medium">Preview</Link>
                     <Link class="btn-outline text-xs font-medium">Edit</Link>
-                    <Link class="btn-outline text-xs font-medium">Delete</Link>
+                    <Link
+                        class="btn-outline text-xs font-medium"
+                        :href="
+                            route('realtor.listing.destroy', {
+                                listing: listing.id,
+                            })
+                        "
+                        as="button"
+                        method="delete"
+                        >Delete</Link
+                    >
                 </div>
             </div>
         </box>
@@ -33,6 +45,7 @@ import Box from "@/components/UI/Box.vue";
 import Price from "@/components/Price.vue";
 import ListingSpace from "@/components/ListingSpace.vue";
 import ListingAddress from "@/components/ListingAddress.vue";
+import RealtorFilters from "@/Pages/Realtor/Index/Components/RealtorFilters.vue";
 import { Link } from "@inertiajs/vue3";
 
 defineProps({ listings: Array });

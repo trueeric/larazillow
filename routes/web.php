@@ -21,8 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
 
+//取消這裡的delete(destroy),換到下面RealtorListingController
 Route::resource('listing', ListingController::class)
-    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->only(['create', 'store', 'edit', 'update'])
     ->middleware('auth');
 // 沒登入時，主要功能預設先關閉
 Route::resource('listing', ListingController::class)
@@ -43,5 +44,6 @@ Route::prefix('realtor')
     ->name('realtor.')
     ->middleware('auth')
     ->group(function () {
-        Route::resource('listing', RealtorListingController::class);
+        Route::resource('listing', RealtorListingController::class)
+            ->only(['index', 'destroy']);
     });

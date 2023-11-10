@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+    // * 引入權限操作,詳見ListingPolicy
     public function __construct()
     {
         $this->authorizeResource(Listing::class, 'listing');
@@ -141,15 +142,16 @@ class ListingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Listing $listing)
-    {
-        // * soft delete
-        $listing->delete();
+    //delete 改到個人頁面，只有管理者或擁有者才能刪
+    // public function destroy(Listing $listing)
+    // {
+    //     // * soft delete
+    //     $listing->delete();
 
-        // ! force delete
-        // $listing->forceDelete();
+    //     // ! force delete
+    //     // $listing->forceDelete();
 
-        return redirect()->route('listing.index')
-            ->with('success', 'Listing was deleted!');
-    }
+    //     return redirect()->route('listing.index')
+    //         ->with('success', 'Listing was deleted!');
+    // }
 }
