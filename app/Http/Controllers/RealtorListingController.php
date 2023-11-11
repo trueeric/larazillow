@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RealtorListingController extends Controller
@@ -12,11 +13,22 @@ class RealtorListingController extends Controller
     {
         $this->authorizeResource(Listing::class, 'listing');
     }
-    public function index()
+    public function index(Request $request)
     {
-
+        $filters = [
+            'deleted' => $request->boolean('deleted'),
+        ];
         return inertia('Realtor/Index',
-            ['listings' => Auth::user()->listings]
+            // * withTrashed() v.s. onlyTrashed()
+            // * withTrashed()列出所有，包含被soft deleted的資料
+            // * onlyTrashed() 僅列出被soft deleted的資料
+            [
+                'listings' => Auth::user()
+                    ->listings()
+                    ->mostRecent()
+                    ->filter($filters)
+                    ->get(),
+            ]
         );
     }
 
