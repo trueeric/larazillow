@@ -4,7 +4,7 @@
         <RealtorFilters :filters="filters" />
     </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-        <box v-for="listing in listings" :key="listings.id">
+        <box v-for="listing in listings.data" :key="listings.id">
             <div
                 class="flex flex-col md:flex-row gap-2 md:items-center justify-between"
             >
@@ -38,6 +38,12 @@
             </div>
         </box>
     </section>
+    <section
+        v-if="listings.data.length"
+        class="w-full flex justify-center mt-4 mb-4"
+    >
+        <Pagination :links="listings.links" />
+    </section>
 </template>
 
 <script setup>
@@ -46,6 +52,7 @@ import Price from "@/components/Price.vue";
 import ListingSpace from "@/components/ListingSpace.vue";
 import ListingAddress from "@/components/ListingAddress.vue";
 import RealtorFilters from "@/Pages/Realtor/Index/Components/RealtorFilters.vue";
+import Pagination from "@/components/UI/Pagination.vue";
 import { Link } from "@inertiajs/vue3";
 
 defineProps({
