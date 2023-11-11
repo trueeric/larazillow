@@ -24,6 +24,7 @@ class RealtorListingController extends Controller
             // * withTrashed()列出所有，包含被soft deleted的資料
             // * onlyTrashed() 僅列出被soft deleted的資料
             [
+                'filters' => $filters, //讀入網址的參數
                 'listings' => Auth::user()
                     ->listings()
                 // ->mostRecent()

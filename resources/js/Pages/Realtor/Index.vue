@@ -1,7 +1,7 @@
 <template>
     <H1 class="text-3xl mb-4">Your Listings</H1>
     <section>
-        <RealtorFilters />
+        <RealtorFilters :filters="filters" />
     </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
         <box v-for="listing in listings" :key="listings.id">
@@ -48,5 +48,8 @@ import ListingAddress from "@/components/ListingAddress.vue";
 import RealtorFilters from "@/Pages/Realtor/Index/Components/RealtorFilters.vue";
 import { Link } from "@inertiajs/vue3";
 
-defineProps({ listings: Array });
+defineProps({
+    listings: Array,
+    filters: Object,
+});
 </script>

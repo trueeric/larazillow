@@ -34,6 +34,10 @@ import { reactive, watch, computed } from "vue";
 import { router } from "@inertiajs/vue3";
 import { debounce } from "lodash";
 
+//讀入自index.vue 傳入的filters參數
+const props = defineProps({
+    filters: Object,
+});
 const sortLabels = {
     created_at: [
         {
@@ -60,9 +64,9 @@ const sortLabels = {
 const sortOptions = computed(() => sortLabels[filterForm.by]);
 
 const filterForm = reactive({
-    deleted: false,
-    by: "created_at",
-    order: "desc",
+    deleted: props.filters.deleted ?? false,
+    by: props.filters.by ?? "created_at",
+    order: props.filters.order ?? "desc",
 });
 
 // watch()接受的類型僅有 reactive / ref / computed
