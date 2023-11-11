@@ -49,7 +49,7 @@ import RealtorFilters from "@/Pages/Realtor/Index/Components/RealtorFilters.vue"
 import { Link } from "@inertiajs/vue3";
 
 defineProps({
-    listings: Array,
+    listings: Object, // 因為不只傳入listings的資料，也要傳入pagination的資料，所以由array 變成 object
     filters: Object,
 });
 </script>
