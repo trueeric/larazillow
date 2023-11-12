@@ -21,14 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
 
-//取消這裡的delete(destroy),換到下面RealtorListingController
+//取消這裡的delete(destroy),edit,update,create,store,換到下面RealtorListingController
 Route::resource('listing', ListingController::class)
-    ->only(['create', 'store', 'edit', 'update'])
-    ->middleware('auth');
-// 沒登入時，主要功能預設先關閉
-Route::resource('listing', ListingController::class)
-    ->except('create', 'store', 'edit', 'update', 'destroy');
-// ->except('destory');
+    ->only('index', 'show');
+// 沒登入時，主要功能預設先關閉用except
+// ->except('create', 'store', 'edit', 'update', 'destroy');
 
 Route::get('login', [AuthController::class, 'create'])
     ->name('login');
@@ -45,5 +42,5 @@ Route::prefix('realtor')
     ->middleware('auth')
     ->group(function () {
         Route::resource('listing', RealtorListingController::class)
-            ->only(['index', 'destroy']);
+            ->only(['index', 'destroy', 'edit', 'update', 'create', 'store']);
     });

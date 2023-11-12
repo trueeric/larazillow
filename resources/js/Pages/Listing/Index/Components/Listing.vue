@@ -13,11 +13,12 @@
                 <listing-address :listing="listing" class="text-gray-500" />
             </Link>
         </div>
-        <div>
-            <!-- <Link :href="`/listing/${listing.id}/edit`">Edit</Link>&nbsp; 使用ziggy前的寫法--->
-            <Link :href="route('listing.edit', listing.id)">Edit</Link>
-        </div>
-        <!-- <div>  delete換到擁有者的相關頁面  RealtorListingController.vue -->
+        <!-- <div> Edit, delete換到擁有者的相關頁面  RealtorListingController.vue -->
+
+        <!-- <div> -->
+        <!-- <Link :href="`/listing/${listing.id}/edit`">Edit</Link>&nbsp; 使用ziggy前的寫法--->
+        <!-- <Link :href="route('listing.edit', listing.id)">Edit</Link>
+        </div> -->
         <!-- <Link :href="`/listing/${listing.id}`" method="DELETE" as="button" >Delete</Link
             > 使用ziggy前的寫法--->
         <!-- <Link
