@@ -41,11 +41,13 @@ Route::prefix('realtor')
     ->name('realtor.')
     ->middleware('auth')
     ->group(function () {
+        // 建一個realtor route restore
         Route::name('listing.restore')
             ->put(
                 'listing/{listing}/restore',
                 [RealtorListingController::class, 'restore']
             )->withTrashed();
+        // 使用原有的route
         Route::resource('listing', RealtorListingController::class)
             ->only(['index', 'destroy', 'edit', 'update', 'create', 'store'])
             ->withTrashed();
