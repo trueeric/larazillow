@@ -62,6 +62,9 @@ class ListingController extends Controller
         // }
         // $this->authorize('view', $listing);
 
+        // 在show頁面顯示圖片
+        $listing->load(['images']);
+
         return inertia(
             'Listing/Show', [
                 'listing' => $listing,
