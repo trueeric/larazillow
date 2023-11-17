@@ -20,6 +20,13 @@ class RealtorListingImageController extends Controller
     public function store(Listing $listing, Request $request)
     {
         if ($request->hasFile('images')) {
+            //* 驗證傳入的是否為圖檔及限制尺寸
+            $request->validate([
+                'images.*' => 'mimes:jpg,png,jpeg|max:5000',
+            ], [
+                'images.*.mimes' => 'The file should be in one of the formats:jpg, png, jpeg',
+            ]);
+
             foreach ($request->file('images') as $file) {
                 // 存在public/images/ 下
                 $path = $file->store('images', 'public');
