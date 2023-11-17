@@ -18,7 +18,7 @@ class ListingImage extends Model
         return $this->belongsTo(Listing::class);
     }
 
-    // getRealSrcAttribute->real_src
+    // getRealSrcAttribute->real_src  駝峰改成字節示
     public function getSrcAttribute()
     {
         return asset("storage/{$this->filename}");
