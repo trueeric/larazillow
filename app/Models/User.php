@@ -63,4 +63,10 @@ class User extends Authenticatable
             'by_user_id'
         );
     }
+
+    public function offers(): HasMany
+    {
+        //* \App\Models\Offer::class 可省略成 Offer::class
+        return $this->hasMany(Offer::class, 'bidder_id');
+    }
 }
