@@ -80,8 +80,13 @@
                     </div>
                 </div>
             </Box>
+            <!-- <div>xxxx{{ console.log(page) }}</div> -->
             <!-- * 這裡的 :listing-id 只能用xx-xx 分字節的寫法 -->
-            <MakeOffer :listing-id="listing.id" :price="listing.price" />
+            <MakeOffer
+                v-if="user"
+                :listing-id="listing.id"
+                :price="listing.price"
+            />
         </div>
     </div>
 </template>
@@ -92,9 +97,10 @@ import ListingSpace from "@/Components/ListingSpace.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import MakeOffer from "@/Pages/Listing/Show/Components/MakeOffer.vue";
-
 import { ref } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
+import { usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 
 const interestRate = ref(2.5);
 const duration = ref(30);
@@ -108,4 +114,8 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
     interestRate,
     duration
 );
+
+// 是否已登錄
+const page = usePage();
+const user = computed(() => page.props.user);
 </script>
