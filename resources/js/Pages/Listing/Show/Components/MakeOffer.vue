@@ -31,7 +31,8 @@
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { useForm } from "@inertiajs/vue3";
-import { computed } from "vue";
+import { computed, watch } from "vue";
+import { debounce } from "lodash";
 
 const props = defineProps({
     listingId: Number,
@@ -48,6 +49,15 @@ const makeOffer = () =>
     });
 
 const difference = computed(() => form.amount - props.price);
-const min = computed(() => Math.round(props.price / 2)); //不能有小數點
+//以下兩個不能有小數點
+const min = computed(() => Math.round(props.price / 2));
 const max = computed(() => Math.round(props.price * 2));
+
+const emit = defineEmits(["offerUpdated"]);
+
+// watch 的標的需為getter,reactive等物件才可以，單一數值不接受
+watch(
+    () => form.amount,
+    debounce((value) => emit("offerUpdated", value), 200)
+);
 </script>
