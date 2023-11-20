@@ -80,14 +80,15 @@
                     </div>
                 </div>
             </Box>
-            <!-- <div>xxxx{{ console.log(page) }}</div> -->
+
             <!-- * 這裡的 :listing-id 只能用xx-xx 分字節的寫法 -->
             <MakeOffer
-                v-if="user"
+                v-if="user && !offerMade"
                 :listing-id="listing.id"
                 :price="listing.price"
                 @offer-updated="offer = $event"
             />
+            <OfferMade v-if="user && offerMade" :offer="offerMade" />
         </div>
     </div>
 </template>
@@ -98,6 +99,7 @@ import ListingSpace from "@/Components/ListingSpace.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import MakeOffer from "@/Pages/Listing/Show/Components/MakeOffer.vue";
+import OfferMade from "@/Pages/Listing/Show/Components/OfferMade.vue";
 import { ref } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 import { usePage } from "@inertiajs/vue3";
@@ -108,6 +110,7 @@ const duration = ref(30);
 
 const props = defineProps({
     listing: Object,
+    offerMade: Object,
 });
 
 const offer = ref(props.listing.price);
