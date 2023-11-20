@@ -78,6 +78,15 @@
                             class="block w-full btn-outline text-xs font-medium text-center"
                             >Images({{ listing.images_count }})</Link
                         >
+                        <Link
+                            :href="
+                                route('realtor.listing.show', {
+                                    listing: listing.id,
+                                })
+                            "
+                            class="block w-full btn-outline text-xs font-medium text-center"
+                            >Offers({{ listing.offers_count }})</Link
+                        >
                     </div>
                 </section>
             </div>
@@ -92,12 +101,12 @@
 </template>
 
 <script setup>
-import Box from "@/components/UI/Box.vue";
-import Price from "@/components/Price.vue";
-import ListingSpace from "@/components/ListingSpace.vue";
-import ListingAddress from "@/components/ListingAddress.vue";
+import Box from "@/Components/UI/Box.vue";
+import Price from "@/Components/Price.vue";
+import ListingSpace from "@/Components/ListingSpace.vue";
+import ListingAddress from "@/Components/ListingAddress.vue";
 import RealtorFilters from "@/Pages/Realtor/Index/Components/RealtorFilters.vue";
-import Pagination from "@/components/UI/Pagination.vue";
+import Pagination from "@/Components/UI/Pagination.vue";
 import { Link } from "@inertiajs/vue3";
 
 defineProps({
