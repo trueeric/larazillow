@@ -10,6 +10,9 @@ class ListingOfferController extends Controller
 {
     public function store(Listing $listing, Request $request)
     {
+        // 延用ListingPolicy中的view規則
+        $this->authorize('view', $listing);
+
         $listing->offers()->save(
             Offer::make(
                 $request->validate([

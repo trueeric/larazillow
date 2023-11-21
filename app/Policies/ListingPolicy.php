@@ -27,7 +27,12 @@ class ListingPolicy
      */
     public function view(?User $user, Listing $listing): bool
     {
-        return true;
+        // *擁有者才全顯示
+        if ($listing->by_usr_id === $user?->id) {
+            return true;
+        }
+        // *僅顯示尚未出售者
+        return $listing->sold_at === null;
     }
 
     /**
@@ -45,7 +50,9 @@ class ListingPolicy
     {
         // dd($listing);
 
-        return $user->id === $listing->by_user_id;
+        // ! 僅未出售及擁有者可更改
+        return $listing->sold_at === null
+            && ($user->id === $listing->by_user_id);
     }
 
     /**
