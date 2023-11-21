@@ -11,6 +11,10 @@ class RealtorListingAcceptOfferController extends Controller
         // Accept selected offer
         $offer->update(['accepted_at' => now()]);
 
+        // update sold_at time
+        $offer->listing->sold_at = now();
+        $offer->listing->save();
+
         // Reject all other offers
         $offer->listing->offers()->except($offer)
             ->update(['rejected_at' => now()]);

@@ -42,12 +42,14 @@ class Listing extends Model
     public function scopeWithoutSold(Builder $query): Builder
     {
         // 無出價紀錄 或有出價紀錄，但無接受日期或無拒絕日期
-        return $query->doesntHave('offers')
-            ->orWhereHas(
-                'offers',
-                fn(Builder $query) => $query->whereNull('accepted_at')
-                    ->whereNull('rejected_at')
-            );
+        // return $query->doesntHave('offers')
+        //     ->orWhereHas(
+        //         'offers',
+        //         fn(Builder $query) => $query->whereNull('accepted_at')
+        //             ->whereNull('rejected_at')
+        //     );
+        //新增已售出日期欄位的作法
+        return $query->whereNull('sold_at');
     }
 
     public function scopeFilter(Builder $query, array $filters): Builder
