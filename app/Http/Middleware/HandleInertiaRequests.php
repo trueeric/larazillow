@@ -42,9 +42,10 @@ class HandleInertiaRequests extends Middleware
             ],
             // * 登入驗證成功傳回以下的值，不然回傳空值
             'user'  => $request->user() ? [
-                'id'    => $request->user()->id,
-                'name'  => $request->user()->name,
-                'email' => $request->user()->email,
+                'id'                => $request->user()->id,
+                'name'              => $request->user()->name,
+                'email'             => $request->user()->email,
+                'notificationCount' => $request->user()->unreadNotifications()->count(),
             ] : null,
         ]);
     }
