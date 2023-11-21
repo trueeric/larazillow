@@ -23,8 +23,14 @@ class offer extends Model
         return $this->belongsTo(User::class, 'bidder_id');
     }
 
+    // * 找出由登入者出價的記錄
     public function scopeByMe(Builder $query): Builder
     {
         return $query->where('bidder_id', Auth::user()?->id);
+    }
+    // * 找出由接受某出價者以外的出價記錄,用以拒絕其他的出價
+    public function scopeExcept(Builder $query, Offer $offer): Builder
+    {
+        return $query->where('id', '<>', $offer->id);
     }
 }

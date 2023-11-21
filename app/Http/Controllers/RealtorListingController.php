@@ -42,7 +42,8 @@ class RealtorListingController extends Controller
         return inertia('Realtor/Show',
             [
                 'listing' =>
-                $listing->load('offers'),
+                // 顯出出價紀錄及出價者(要到Offer.php,Offer.vue做相對調整)
+                $listing->load('offers', 'offers.bidder'),
             ]
         );
     }
