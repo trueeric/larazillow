@@ -39,6 +39,17 @@ class Listing extends Model
         return $query->orderByDesc('created_at');
     }
 
+    public function scopeWithoutSold(Builder $query): Builder
+    {
+        // 無出價紀錄 或有出價紀錄，但無接受日期或無拒絕日期
+        return $query->doesntHave('offers')
+            ->orWhereHas(
+                'offers',
+                fn(Builder $query) => $query->whereNull('accepted_at')
+                    ->whereNull('rejected_at')
+            );
+    }
+
     public function scopeFilter(Builder $query, array $filters): Builder
     {
         return $query->when(
