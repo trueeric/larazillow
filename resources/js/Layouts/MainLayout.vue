@@ -13,7 +13,10 @@
                     <Link :href="route('listing.index')">Larazillow</Link>
                 </div>
                 <div v-if="user" class="flex items-center gap-4">
-                    <div class="text-gray-500 relative pr-2 py-2 text-lg">
+                    <Link
+                        :href="route('notification.index')"
+                        class="text-gray-500 relative pr-2 py-2 text-lg"
+                    >
                         🔔
                         <div
                             v-if="notificationCount"
@@ -21,7 +24,7 @@
                         >
                             {{ notificationCount }}
                         </div>
-                    </div>
+                    </Link>
 
                     <Link
                         class="text-sm text-gray-500"
