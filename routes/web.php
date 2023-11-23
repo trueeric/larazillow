@@ -49,12 +49,17 @@ Route::post('login', [AuthController::class, 'store'])
 Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
+Route::get('/email/verify', function () {
+    return inertia('Auth/VerifyEmail');
+})
+    ->middleware('auth')->name('verification.notice');
+
 Route::resource('user-account', UserAccountController::class)
     ->only(['create', 'store']);
 
 Route::prefix('realtor')
     ->name('realtor.')
-    ->middleware('auth')
+    ->middleware(['auth', 'verified']) // 除了登入驗證, 信件驗證也需要過
     ->group(function () {
         // 建一個realtor route restore
         Route::name('listing.restore')
